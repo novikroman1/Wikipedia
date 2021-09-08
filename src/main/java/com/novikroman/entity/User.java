@@ -22,9 +22,6 @@ public class User implements UserDetails {
     @Column(name = "surname")
     private String surname;
 
-    @Column(name = "information_id")
-    private Integer informationId;
-
     @ManyToMany(mappedBy = "users")
     private Set<Article> articles;
 
@@ -74,14 +71,6 @@ public class User implements UserDetails {
 
     public void setSurname(String surname) {
         this.surname = surname;
-    }
-
-    public Integer getInformationId() {
-        return informationId;
-    }
-
-    public void setInformationId(Integer informationId) {
-        this.informationId = informationId;
     }
 
     public Set<Article> getArticles() {

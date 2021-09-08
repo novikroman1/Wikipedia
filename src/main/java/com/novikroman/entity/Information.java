@@ -24,9 +24,6 @@ public class Information {
     @Column(name = "place_of_birth",nullable = false)
     private String placeOfBirth;
 
-    @Column(name = "author_id",nullable = false)
-    private Integer authorId;
-
     @OneToOne
     @JoinColumn(name = "information_id")
     private User user;
@@ -56,14 +53,6 @@ public class Information {
 
     public void setPlaceOfBirth(String placeOfBirth) {
         this.placeOfBirth = placeOfBirth;
-    }
-
-    public Integer getAuthorId() {
-        return authorId;
-    }
-
-    public void setAuthorId(Integer authorId) {
-        this.authorId = authorId;
     }
 
     public User getAuthor() {
