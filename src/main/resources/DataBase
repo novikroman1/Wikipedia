@@ -16,7 +16,7 @@ name varchar(40) not null,
 foreign key (id) references article(id)
 );
 
-create table author(
+create table user(
 id integer primary key auto_increment not null,
 name varchar(30) not null,
 surname varchar(30) not null,
@@ -35,8 +35,8 @@ id integer primary key auto_increment not null,
 id_article integer not null,
 id_author integer not null,
 foreign key (id_article) references article(id),
-foreign key (id_author) references author(id)
+foreign key (id_author) references user(id)
 );
 
-ALTER TABLE author ADD CONSTRAINT fk_information_id FOREIGN KEY (information_id) REFERENCES information(id);
-ALTER TABLE information ADD CONSTRAINT fk_author_id FOREIGN KEY (author_id) REFERENCES author(id);
+ALTER TABLE user ADD CONSTRAINT fk_information_id FOREIGN KEY (information_id) REFERENCES information(id);
+ALTER TABLE information ADD CONSTRAINT fk_author_id FOREIGN KEY (author_id) REFERENCES user(id);

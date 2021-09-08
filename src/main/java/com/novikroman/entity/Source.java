@@ -1,25 +1,31 @@
 package com.novikroman.entity;
 
-import javax.persistence.*;
-import java.util.Set;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "source")
 public class Source {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
+    @Column(name = "id",nullable = false)
     private Integer id;
 
-    @Column(name = "name")
+    @Column(name = "name",nullable = false)
     private String name;
-
-    public Source() {
-    }
 
     @ManyToOne()
     @JoinColumn(name = "source_id")
     private Article articles;
+
+    public Source() {
+    }
 
     public Integer getId() {
         return id;

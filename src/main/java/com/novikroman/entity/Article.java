@@ -9,23 +9,17 @@ import java.util.Set;
 public class Article {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     private Integer id;
 
     @Column(name = "name")
     private String name;
 
-    @Column(name = "author_id")
-    private Integer authorId;
-
-    @Column(name = "number_of_pages")
+    @Column(name = "number_of_pages", nullable = false)
     private Integer numberOfPages;
 
-    @Column(name = "publication_of_date")
+    @Column(name = "publication_of_date", nullable = false)
     private Date numberOfPage;
-
-    @Column(name = "source_id")
-    private Integer sourceId;
 
     @ManyToMany
     @JoinTable(
@@ -33,9 +27,9 @@ public class Article {
             joinColumns = @JoinColumn(name = "id_article"),
             inverseJoinColumns = @JoinColumn(name = "id_author")
     )
-    private Set<Author> authors;
+    private Set<User> users;
 
-    @OneToMany(mappedBy = "source")
+    @OneToMany(mappedBy = "articles")
     private Set<Source> sources;
 
     public Article() {
@@ -57,14 +51,6 @@ public class Article {
         this.name = name;
     }
 
-    public Integer getAuthorId() {
-        return authorId;
-    }
-
-    public void setAuthorId(Integer authorId) {
-        this.authorId = authorId;
-    }
-
     public Integer getNumberOfPages() {
         return numberOfPages;
     }
@@ -81,20 +67,12 @@ public class Article {
         this.numberOfPage = numberOfPage;
     }
 
-    public Integer getSourceId() {
-        return sourceId;
+    public Set<User> getAuthors() {
+        return users;
     }
 
-    public void setSourceId(Integer sourceId) {
-        this.sourceId = sourceId;
-    }
-
-    public Set<Author> getAuthors() {
-        return authors;
-    }
-
-    public void setAuthors(Set<Author> authors) {
-        this.authors = authors;
+    public void setAuthors(Set<User> users) {
+        this.users = users;
     }
 
     public Set<Source> getSources() {

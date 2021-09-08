@@ -1,6 +1,13 @@
 package com.novikroman.entity;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import java.util.Date;
 
 @Entity
@@ -8,23 +15,24 @@ import java.util.Date;
 public class Information {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
+    @Column(name = "id",nullable = false)
     private Integer id;
 
-    @Column(name = "birthday")
+    @Column(name = "birthday",nullable = false)
     private Date birthday;
 
-    @Column(name = "place_of_birth")
+    @Column(name = "place_of_birth",nullable = false)
     private String placeOfBirth;
 
-    @Column(name = "author_id")
+    @Column(name = "author_id",nullable = false)
     private Integer authorId;
+
+    @OneToOne
+    @JoinColumn(name = "information_id")
+    private User user;
 
     public Information() {
     }
-    @OneToOne
-    @JoinColumn(name = "information_id")
-    private Author author;
 
     public Integer getId() {
         return id;
@@ -58,11 +66,11 @@ public class Information {
         this.authorId = authorId;
     }
 
-    public Author getAuthor() {
-        return author;
+    public User getAuthor() {
+        return user;
     }
 
-    public void setAuthor(Author author) {
-        this.author = author;
+    public void setAuthor(User user) {
+        this.user = user;
     }
 }
